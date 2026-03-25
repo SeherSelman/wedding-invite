@@ -37,7 +37,11 @@
             box-sizing: border-box;
         }
 
-        html {
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
@@ -48,16 +52,16 @@
             background:
                 radial-gradient(circle at top, rgba(255, 255, 255, 0.65), transparent 35%),
                 linear-gradient(180deg, #eef4ee 0%, #f6f3ed 22%, #fbf7f2 55%, #f2eee8 100%);
-            overflow-x: hidden;
         }
 
         body.no-scroll {
             overflow: hidden;
-            height: 100vh;
+            height: calc(var(--vh) * 100);
         }
 
         img {
             max-width: 100%;
+            height: auto;
             display: block;
         }
 
@@ -150,6 +154,7 @@
             position: fixed;
             inset: 0;
             height: calc(var(--vh) * 100);
+            min-height: calc(var(--vh) * 100);
             z-index: 9999;
             background:
                 radial-gradient(circle at top, rgba(255, 255, 255, 0.75), transparent 32%),
@@ -226,7 +231,8 @@
 
         #envelopeContainer {
             position: relative;
-            width: min(88vw, 520px);
+            width: 86vw;
+            max-width: 520px;
             filter: drop-shadow(0 18px 30px rgba(64, 73, 60, 0.15));
             transform-origin: center center;
             transition: transform 0.35s ease;
@@ -388,7 +394,8 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            width: min(calc(100% - 32px), 900px);
+            width: calc(100% - 24px);
+            max-width: 900px;
             margin: 0 auto;
             color: var(--white);
             text-align: center;
@@ -817,7 +824,8 @@
             }
 
             #envelopeContainer {
-                width: min(94vw, 460px);
+                width: 86vw;
+                max-width: 420px;
             }
 
             .hero h1 {
@@ -851,13 +859,12 @@
     </style>
 </head>
 
-<body class="no-scroll">
+<body id="top" class="no-scroll">
     <div class="page-shell">
         <!-- ENTRY SCREEN -->
         <div id="entryScreen">
             <div class="entry-inner">
                 <div class="entry-copy" data-aos="fade-up" data-aos-duration="900">
-
                     <div class="eyebrow">Wedding Invitation</div>
                     <h2 class="entry-title">Selman &amp; Seher</h2>
                     <p class="entry-subtitle">A quiet beginning to a beautiful celebration. Break the seal to open our
@@ -1041,12 +1048,12 @@
             offset: 80
         });
 
-
         function setViewportHeight() {
             document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
         }
 
         setViewportHeight();
+        window.addEventListener('load', setViewportHeight);
         window.addEventListener('resize', setViewportHeight);
         window.addEventListener('orientationchange', setViewportHeight);
 
