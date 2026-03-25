@@ -3,118 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invite</title>
+  <title>Selman & Seher Wedding</title>
 
-  <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      scroll-behavior: smooth;
-      background: #f9f9f9;
-    }
-
-    section {
-      padding: 60px 20px;
-      text-align: center;
-    }
+    body { margin:0; font-family: Arial, sans-serif; background:#f9f9f9; }
+    section { padding:60px 20px; text-align:center; }
 
     .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(to bottom, #00000088, #00000088), url('https://via.placeholder.com/800x1200?text=Main+Photo');
-      background-size: cover;
-      background-position: center;
-      color: white;
+      height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+      background:linear-gradient(to bottom,#00000088,#00000088), url('https://via.placeholder.com/800x1200?text=Main+Photo');
+      background-size:cover; color:white;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin: 0;
-    }
+    h1 { font-size:2.3rem; margin:0; }
+    h2 { margin-bottom:20px; }
 
-    h2 {
-      margin-bottom: 20px;
-    }
-
-    p {
-      max-width: 500px;
-      margin: auto;
-    }
-
-    img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 12px;
-      margin: 20px 0;
-    }
+    img { width:100%; max-width:400px; border-radius:12px; margin:20px 0; }
 
     .btn {
-      display: inline-block;
-      padding: 15px 25px;
-      background: black;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      margin-top: 20px;
+      display:inline-block; padding:15px 25px; background:black; color:white;
+      text-decoration:none; border-radius:8px; margin-top:20px;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
+    /* ENTRY SCREEN */
+    #entryScreen {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:black; color:white; display:flex;
+      flex-direction:column; justify-content:center; align-items:center;
+      z-index:9999; text-align:center;
     }
+
+    #entryScreen h1 { font-size:1.8rem; }
+
+    /* COUNTDOWN */
+    #countdown { font-size:1.5rem; margin-top:15px; }
+
+    @media (max-width:600px){ h1{font-size:1.8rem;} }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1 data-aos="fade-up">Your Name & Partner Name</h1>
-    <p data-aos="fade-up" data-aos-delay="200">We’re getting married</p>
-    <p data-aos="fade-up" data-aos-delay="400">Wedding Date Here</p>
-  </section>
+<!-- ENTRY SCREEN -->
+<div id="entryScreen">
+  <h1>Selman Raşit Bursal ♥ Seher Çeltikoğlu</h1>
+  <p>Tap to Enter</p>
+  <img src="https://via.placeholder.com/150?text=Heart+PNG" />
+</div>
 
-  <!-- STORY -->
-  <section>
-    <h2 data-aos="fade-up">Our Story</h2>
-    <p data-aos="fade-up">Write your story here...</p>
-    <img src="https://via.placeholder.com/400x500?text=Pic+1" data-aos="fade-up">
-    <img src="https://via.placeholder.com/400x500?text=Pic+2" data-aos="fade-up">
-  </section>
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- DETAILS -->
-  <section>
-    <h2 data-aos="fade-up">Wedding Details</h2>
-    <p data-aos="fade-up">Location: Your Venue</p>
-    <p data-aos="fade-up">Time: Your Time</p>
-    <img src="https://via.placeholder.com/400x500?text=Pic+3" data-aos="fade-up">
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <h1 data-aos="fade-up">Selman & Seher</h1>
+  <p data-aos="fade-up">May 17, 2026</p>
+  <div id="countdown"></div>
+</section>
 
-  <!-- GALLERY -->
-  <section>
-    <h2 data-aos="fade-up">Gallery</h2>
-    <img src="https://via.placeholder.com/400x500?text=Pic+4" data-aos="fade-up">
-    <img src="https://via.placeholder.com/400x500?text=Pic+5" data-aos="fade-up">
-    <img src="https://via.placeholder.com/400x500?text=Pic+6" data-aos="fade-up">
-  </section>
+<!-- STORY -->
+<section>
+  <h2 data-aos="fade-up">Our Story</h2>
+  <img src="https://via.placeholder.com/400x500?text=Pic+1" data-aos="fade-up">
+  <img src="https://via.placeholder.com/400x500?text=Pic+2" data-aos="fade-up">
+</section>
 
-  <!-- RSVP -->
-  <section>
-    <h2 data-aos="fade-up">RSVP</h2>
-    <p data-aos="fade-up">Please confirm your attendance using the link below</p>
-    <a href="https://your-google-form-link-here" class="btn" target="_blank">RSVP Here</a>
-  </section>
+<!-- DETAILS -->
+<section>
+  <h2 data-aos="fade-up">Wedding Details</h2>
+  <p data-aos="fade-up">Location: TBD</p>
+  <p data-aos="fade-up">Time: TBD</p>
+  <img src="https://via.placeholder.com/400x500?text=Pic+3" data-aos="fade-up">
+</section>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+<!-- RSVP -->
+<section>
+  <h2 data-aos="fade-up">RSVP</h2>
+  <a href="https://your-google-form-link-here" class="btn" target="_blank">RSVP Here</a>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init();
+
+// ENTRY CLICK
+const entry = document.getElementById('entryScreen');
+const music = document.getElementById('bgMusic');
+
+entry.addEventListener('click', () => {
+  entry.style.display = 'none';
+  music.play();
+});
+
+// COUNTDOWN
+const targetDate = new Date("May 17, 2026 00:00:00").getTime();
+
+const countdownEl = document.getElementById("countdown");
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}, 1000);
+</script>
 
 </body>
 </html>
