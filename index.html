@@ -8,7 +8,7 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#f9f9f9; }
+    body { margin:0; font-family: Arial, sans-serif; background:#f9f9f9; overflow-x:hidden; }
     section { padding:60px 20px; text-align:center; }
 
     .hero {
@@ -18,38 +18,64 @@
     }
 
     h1 { font-size:2.3rem; margin:0; }
-    h2 { margin-bottom:20px; }
-
-    img { width:100%; max-width:400px; border-radius:12px; margin:20px 0; }
-
-    .btn {
-      display:inline-block; padding:15px 25px; background:black; color:white;
-      text-decoration:none; border-radius:8px; margin-top:20px;
-    }
 
     /* ENTRY SCREEN */
     #entryScreen {
       position:fixed; top:0; left:0; width:100%; height:100%;
-      background:black; color:white; display:flex;
-      flex-direction:column; justify-content:center; align-items:center;
-      z-index:9999; text-align:center;
+      background:#f5efe6; display:flex; flex-direction:column;
+      justify-content:center; align-items:center; z-index:9999;
     }
 
-    #entryScreen h1 { font-size:1.8rem; }
+    #envelopeContainer {
+      position:relative;
+      width:250px;
+    }
 
-    /* COUNTDOWN */
+    #envelope {
+      width:100%;
+    }
+
+    #seal {
+      position:absolute;
+      width:80px;
+      left:50%;
+      top:45%;
+      transform:translate(-50%, -50%);
+    }
+
+    .shake {
+      animation: shake 0.4s;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      25% { transform: translate(-50%, -50%) rotate(3deg); }
+      50% { transform: translate(-50%, -50%) rotate(-3deg); }
+      75% { transform: translate(-50%, -50%) rotate(2deg); }
+      100% { transform: translate(-50%, -50%) rotate(0deg); }
+    }
+
+    .open {
+      animation: openEnvelope 1s forwards;
+    }
+
+    @keyframes openEnvelope {
+      0% { transform: translateY(0); opacity:1; }
+      100% { transform: translateY(-120%); opacity:0; }
+    }
+
     #countdown { font-size:1.5rem; margin-top:15px; }
-
-    @media (max-width:600px){ h1{font-size:1.8rem;} }
   </style>
 </head>
 <body>
 
 <!-- ENTRY SCREEN -->
 <div id="entryScreen">
-  <h1>Selman Raşit Bursal ♥ Seher Çeltikoğlu</h1>
-  <p>Tap to Enter</p>
-  <img src="https://via.placeholder.com/150?text=Heart+PNG" />
+  <div id="envelopeContainer">
+    <img id="envelope" src="images/envelope-closed.png" />
+    <img id="seal" src="images/seal-1.png" />
+  </div>
+  <p>Tap to break the seal</p>
 </div>
 
 <!-- AUDIO -->
@@ -64,43 +90,47 @@
   <div id="countdown"></div>
 </section>
 
-<!-- STORY -->
-<section>
-  <h2 data-aos="fade-up">Our Story</h2>
-  <img src="https://via.placeholder.com/400x500?text=Pic+1" data-aos="fade-up">
-  <img src="https://via.placeholder.com/400x500?text=Pic+2" data-aos="fade-up">
-</section>
-
-<!-- DETAILS -->
-<section>
-  <h2 data-aos="fade-up">Wedding Details</h2>
-  <p data-aos="fade-up">Location: TBD</p>
-  <p data-aos="fade-up">Time: TBD</p>
-  <img src="https://via.placeholder.com/400x500?text=Pic+3" data-aos="fade-up">
-</section>
-
-<!-- RSVP -->
-<section>
-  <h2 data-aos="fade-up">RSVP</h2>
-  <a href="https://your-google-form-link-here" class="btn" target="_blank">RSVP Here</a>
-</section>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 AOS.init();
 
-// ENTRY CLICK
 const entry = document.getElementById('entryScreen');
+const envelope = document.getElementById('envelope');
+const seal = document.getElementById('seal');
 const music = document.getElementById('bgMusic');
 
+let tapCount = 0;
+
 entry.addEventListener('click', () => {
-  entry.style.display = 'none';
-  music.play();
+  tapCount++;
+
+  seal.classList.add('shake');
+  setTimeout(() => seal.classList.remove('shake'), 400);
+
+  // Change seal images
+  if (tapCount === 2) {
+    seal.src = "images/seal-2.png";
+  }
+
+  if (tapCount === 3) {
+    seal.src = "images/seal-3.png";
+
+    setTimeout(() => {
+      envelope.src = "images/envelope-open.png";
+      seal.style.display = "none";
+      envelope.classList.add('open');
+
+      music.play();
+
+      setTimeout(() => {
+        entry.style.display = 'none';
+      }, 1000);
+    }, 300);
+  }
 });
 
 // COUNTDOWN
 const targetDate = new Date("May 17, 2026 00:00:00").getTime();
-
 const countdownEl = document.getElementById("countdown");
 
 setInterval(() => {
