@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -217,13 +218,16 @@
             line-height: 1.05;
             color: var(--olive-dark);
             text-align: center;
+            font-weight: 600;
         }
 
         .entry-title {
             margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
             font-size: clamp(2.2rem, 6.8vw, 4.2rem);
-            color: var(--olive-dark);
-            text-wrap: balance;
+            color: #5f6f5f;
+            letter-spacing: 0.5px;
         }
 
         .entry-subtitle {
@@ -422,6 +426,27 @@
             }
         }
 
+        /* First invite section */
+        .invite-showcase {
+            padding-top: 72px;
+            padding-bottom: 40px;
+        }
+
+        .invite-showcase-card {
+            max-width: 430px;
+            margin: 0 auto;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 26px 60px rgba(56, 67, 53, 0.14);
+            border: 1px solid rgba(95, 104, 88, 0.10);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .invite-showcase-card img {
+            width: 100%;
+            display: block;
+        }
+
         /* Hero */
         .hero {
             min-height: calc(var(--vh) * 100);
@@ -496,12 +521,6 @@
             opacity: 0.95;
         }
 
-        .hero-meta {
-            margin-top: 20px;
-            font-size: 0.96rem;
-            opacity: 0.9;
-        }
-
         .countdown-wrap {
             margin: 34px auto 0;
             width: min(100%, 760px);
@@ -551,7 +570,6 @@
             opacity: 0.9;
         }
 
-        /* Section layouts */
         .two-col {
             display: grid;
             grid-template-columns: 1.05fr 0.95fr;
@@ -695,7 +713,7 @@
         }
 
         .rsvp-section {
-            padding-top: 88px;
+            padding-top: 60px;
             padding-bottom: 88px;
         }
 
@@ -880,6 +898,10 @@
                 bottom: 62px;
                 width: 74%;
             }
+
+            .invite-showcase-card {
+                max-width: 360px;
+            }
         }
 
         @media (max-width: 520px) {
@@ -940,6 +962,16 @@
             #inviteCard img {
                 border-radius: 16px;
             }
+
+            .invite-showcase {
+                padding-top: 46px;
+                padding-bottom: 24px;
+            }
+
+            .invite-showcase-card {
+                max-width: 300px;
+                border-radius: 18px;
+            }
         }
     </style>
 </head>
@@ -950,15 +982,14 @@
         <div id="entryScreen">
             <div class="entry-inner">
                 <div class="entry-copy" data-aos="fade-up" data-aos-duration="900">
+                    <div class="eyebrow">Wedding Invitation</div>
+                    <h2 class="entry-title">Seher &amp; Selman</h2>
+                    <br>
                     <p class="entry-family">
                         Ahmet ve Aysel Çeltikoğlu<br>
                         &amp;<br>
                         Seyit ve Şennur Bursal
                     </p>
-                    <br>
-                    <div class="eyebrow">Wedding Invitation</div>
-
-                    <h2 class="entry-title">Seher &amp; Selman</h2>
 
                     <p class="entry-subtitle">Davetiyemizi açmak için dokunun.</p>
                     <p class="entry-subtitle">Tap to open our invitation.</p>
@@ -973,7 +1004,7 @@
                     <img id="seal" src="images/seal-1.png" alt="Wax seal" />
                 </div>
 
-                <div id="tapHint">Tap to open</div>
+                <div id="tapHint"></div>
             </div>
         </div>
 
@@ -981,6 +1012,15 @@
         <audio id="bgMusic" loop>
             <source src="music.mp3" type="audio/mpeg" />
         </audio>
+
+        <!-- INVITE CARD SECTION -->
+        <section class="invite-showcase">
+            <div class="container">
+                <div class="invite-showcase-card" data-aos="fade-up" data-aos-duration="950">
+                    <img src="images/invite-card.jpeg" alt="Wedding invitation card full view" />
+                </div>
+            </div>
+        </section>
 
         <!-- RSVP -->
         <section class="rsvp-section">
@@ -1239,10 +1279,6 @@
             setTimeout(() => {
                 envelope.classList.add('envelope-drop');
             }, 820);
-
-            setTimeout(() => {
-                tapHint.textContent = 'Please wait…';
-            }, 1800);
 
             setTimeout(() => {
                 entry.classList.add('entry-fade');
