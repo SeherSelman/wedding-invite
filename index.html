@@ -192,15 +192,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 18px;
+            justify-content: center;
+            gap: 10px;
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
         .entry-copy {
-            max-width: 440px;
+            max-width: 520px;
             color: var(--olive-dark);
+            margin-bottom: 4px;
         }
 
         .entry-copy .eyebrow {
@@ -208,16 +210,26 @@
             color: #78856d;
         }
 
+        .entry-family {
+            margin: 0 0 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3.6vw, 2rem);
+            line-height: 1.05;
+            color: var(--olive-dark);
+            text-align: center;
+        }
+
         .entry-title {
-            font-size: clamp(2.7rem, 8vw, 5rem);
+            margin: 0;
+            font-size: clamp(2.2rem, 6.8vw, 4.2rem);
             color: var(--olive-dark);
             text-wrap: balance;
         }
 
         .entry-subtitle {
-            margin: 10px 0 0;
-            font-size: 1rem;
-            line-height: 1.6;
+            margin: 6px 0 0;
+            font-size: 0.95rem;
+            line-height: 1.45;
             color: var(--muted);
         }
 
@@ -233,26 +245,53 @@
             position: relative;
             width: 86vw;
             max-width: 520px;
+            height: 430px;
             filter: drop-shadow(0 18px 30px rgba(64, 73, 60, 0.15));
             transform-origin: center center;
             transition: transform 0.35s ease;
         }
 
-        #envelope {
+        #inviteCard {
+            position: absolute;
+            left: 50%;
+            bottom: 66px;
+            width: 72%;
+            max-width: 340px;
+            transform: translateX(-50%) translateY(120px);
+            opacity: 0;
+            z-index: 1;
+            border-radius: 24px;
+            box-shadow: 0 22px 50px rgba(56, 67, 53, 0.16);
+            overflow: hidden;
+        }
+
+        #inviteCard img {
             width: 100%;
+            display: block;
+            border-radius: 24px;
+        }
+
+        #envelope {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 100%;
+            transform: translateX(-50%);
             user-select: none;
             -webkit-user-drag: none;
+            z-index: 3;
         }
 
         #seal {
             position: absolute;
             width: clamp(104px, 24vw, 158px);
             left: 50%;
-            top: 67.5%;
+            top: 71%;
             transform: translate(-50%, -50%);
             transform-origin: center center;
             user-select: none;
             -webkit-user-drag: none;
+            z-index: 4;
         }
 
         .shake-envelope {
@@ -287,11 +326,11 @@
             }
 
             20% {
-                transform: translate(-50%, -50%) rotate(4deg) scale(1.02);
+                transform: translate(-50%, -50%) rotate(5deg) scale(1.04);
             }
 
             40% {
-                transform: translate(-50%, -50%) rotate(-5deg) scale(1.02);
+                transform: translate(-50%, -50%) rotate(-6deg) scale(1.03);
             }
 
             60% {
@@ -318,33 +357,53 @@
             }
 
             35% {
-                transform: translate(-50%, -50%) scale(1.08);
+                transform: translate(-50%, -50%) scale(1.1);
                 opacity: 1;
             }
 
             100% {
-                transform: translate(-50%, -50%) scale(0.88);
+                transform: translate(-50%, -50%) scale(0.84);
                 opacity: 0;
             }
         }
 
-        .envelope-open-rise {
-            animation: envelopeOpenRise 1.15s cubic-bezier(.25, .85, .2, 1) forwards;
+        .card-emerge {
+            animation: cardEmerge 1.35s cubic-bezier(.2, .8, .2, 1) forwards;
         }
 
-        @keyframes envelopeOpenRise {
+        @keyframes cardEmerge {
             0% {
-                transform: translateY(0) scale(1);
+                transform: translateX(-50%) translateY(120px);
+                opacity: 0;
+            }
+
+            15% {
                 opacity: 1;
             }
 
-            45% {
-                transform: translateY(-16px) scale(1.03);
+            68% {
+                transform: translateX(-50%) translateY(-150px);
                 opacity: 1;
             }
 
             100% {
-                transform: translateY(-135vh) scale(1.06);
+                transform: translateX(-50%) translateY(-130px);
+                opacity: 1;
+            }
+        }
+
+        .envelope-drop {
+            animation: envelopeDrop 1s cubic-bezier(.22, .8, .25, 1) forwards;
+        }
+
+        @keyframes envelopeDrop {
+            0% {
+                transform: translateX(-50%) translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(170px) scale(0.94);
                 opacity: 0;
             }
         }
@@ -636,8 +695,8 @@
         }
 
         .rsvp-section {
-            padding-top: 78px;
-            padding-bottom: 110px;
+            padding-top: 88px;
+            padding-bottom: 88px;
         }
 
         .rsvp-card {
@@ -809,8 +868,17 @@
                 top: 150px;
             }
 
+            #envelopeContainer {
+                height: 360px;
+            }
+
             #seal {
-                top: 67%;
+                top: 70%;
+            }
+
+            #inviteCard {
+                bottom: 62px;
+                width: 74%;
             }
         }
 
@@ -823,9 +891,16 @@
                 font-size: 2.35rem;
             }
 
+            .entry-family {
+                font-size: 1rem;
+                line-height: 1.08;
+                margin-bottom: 8px;
+            }
+
             #envelopeContainer {
                 width: 86vw;
                 max-width: 420px;
+                height: 315px;
             }
 
             .hero h1 {
@@ -855,6 +930,16 @@
             .gallery-item.wide {
                 min-height: 250px;
             }
+
+            #inviteCard {
+                bottom: 52px;
+                width: 78%;
+                border-radius: 16px;
+            }
+
+            #inviteCard img {
+                border-radius: 16px;
+            }
         }
     </style>
 </head>
@@ -865,18 +950,30 @@
         <div id="entryScreen">
             <div class="entry-inner">
                 <div class="entry-copy" data-aos="fade-up" data-aos-duration="900">
+                    <p class="entry-family">
+                        Ahmet ve Aysel Çeltikoğlu<br>
+                        &amp;<br>
+                        Seyit ve Şennur Bursal
+                    </p>
+                    <br>
                     <div class="eyebrow">Wedding Invitation</div>
+
                     <h2 class="entry-title">Seher &amp; Selman</h2>
-                    <p class="entry-subtitle">A quiet beginning to a beautiful celebration. Break the seal to open our
-                        invitation.</p>
+
+                    <p class="entry-subtitle">Davetiyemizi açmak için dokunun.</p>
+                    <p class="entry-subtitle">Tap to open our invitation.</p>
                 </div>
 
                 <div id="envelopeContainer" aria-label="Tap to open envelope">
+                    <div id="inviteCard">
+                        <img src="images/invite-card.jpeg" alt="Wedding invitation card" />
+                    </div>
+
                     <img id="envelope" src="images/envelope-closed.png" alt="Closed envelope" />
                     <img id="seal" src="images/seal-1.png" alt="Wax seal" />
                 </div>
 
-                <div id="tapHint">Tap to break the seal</div>
+                <div id="tapHint">Tap to open</div>
             </div>
         </div>
 
@@ -885,6 +982,34 @@
             <source src="music.mp3" type="audio/mpeg" />
         </audio>
 
+        <!-- RSVP -->
+        <section class="rsvp-section">
+            <div class="container">
+                <div class="rsvp-card card" data-aos="fade-up" data-aos-duration="950">
+                    <div class="eyebrow">RSVP</div>
+                    <h2 class="rsvp-title">Join Us</h2>
+                    <p class="rsvp-text">
+                        Bu özel günümüzde sizinle birlikte kutlamak bizim için büyük bir mutluluk olacaktır.
+                        Lütfen RSVP formunu kullanarak, detaylar netleştiğinde katılım durumunuzu bildiriniz.
+                    </p>
+
+                    <p class="rsvp-text" style="margin-top:16px;">
+                        We would be honored to celebrate with you. Please use the RSVP form and kindly
+                        respond when details are finalized.
+                    </p>
+
+                    <div class="btn-row">
+                        <a href="LINK HERE" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open RSVP
+                            Form</a>
+                        <a href="#top" class="btn btn-secondary">Back To Top</a>
+                    </div>
+
+                    <div class="footer-note">Formal invitation details and timing will be updated here.</div>
+                    <div class="monogram">S &amp; S</div>
+                </div>
+            </div>
+        </section>
+
         <!-- HERO -->
         <section class="hero">
             <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
@@ -892,7 +1017,6 @@
                 <h1>Seher<br />&amp; Selman</h1>
                 <div class="hero-divider"></div>
                 <div class="hero-date">Sunday May 17, 2026</div>
-                <div class="hero-meta">A new chapter begins</div>
 
                 <div class="countdown-wrap">
                     <div class="countdown-label">Counting Down To Our Day</div>
@@ -916,7 +1040,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-cue">Scroll to begin</div>
+                <div class="scroll-cue">Scroll to continue</div>
             </div>
         </section>
 
@@ -944,13 +1068,13 @@
 
                 <div class="photo-stack" data-aos="fade-left" data-aos-duration="1000">
                     <div class="photo-card photo-main">
-                        <img src="images/pic-1.jpeg" alt="Replace with photo 1" />
+                        <img src="images/pic-1.jpeg" alt="Photo 1" />
                     </div>
                     <div class="photo-card photo-small-a">
-                        <img src="images/pic-2.jpeg" alt="Replace with photo 2" />
+                        <img src="images/pic-2.jpeg" alt="Photo 2" />
                     </div>
                     <div class="photo-card photo-small-b">
-                        <img src="images/pic-3.jpeg" alt="Replace with photo 3" />
+                        <img src="images/pic-3.jpeg" alt="Photo 3" />
                     </div>
                 </div>
             </div>
@@ -1002,48 +1126,20 @@
 
                 <div class="gallery-grid">
                     <div class="gallery-item large" data-aos="fade-up">
-                        <img src="images/pic-4.jpeg" alt="Replace with gallery image 1" />
+                        <img src="images/pic-4.jpeg" alt="Gallery image 1" />
                     </div>
                     <div class="gallery-item tall" data-aos="fade-up" data-aos-delay="80">
-                        <img src="images/pic-5.jpeg" alt="Replace with gallery image 2" />
+                        <img src="images/pic-5.jpeg" alt="Gallery image 2" />
                     </div>
                     <div class="gallery-item wide" data-aos="fade-up" data-aos-delay="40">
-                        <img src="images/pic-6.jpeg" alt="Replace with gallery image 3" />
+                        <img src="images/pic-6.jpeg" alt="Gallery image 3" />
                     </div>
                     <div class="gallery-item wide" data-aos="fade-up" data-aos-delay="120">
-                        <img src="images/pic-7.jpeg" alt="Replace with gallery image 4" />
+                        <img src="images/pic-7.jpeg" alt="Gallery image 4" />
                     </div>
                     <div class="gallery-item wide" data-aos="fade-up" data-aos-delay="200">
-                        <img src="images/pic-8.jpeg" alt="Replace with gallery image 5" />
+                        <img src="images/pic-8.jpeg" alt="Gallery image 5" />
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- RSVP -->
-        <section class="rsvp-section">
-            <div class="container">
-                <div class="rsvp-card card" data-aos="fade-up" data-aos-duration="950">
-                    <div class="eyebrow">RSVP</div>
-                    <h2 class="rsvp-title">Join Us</h2>
-                    <p class="rsvp-text">
-                        Bu özel günümüzde sizinle birlikte kutlamak bizim için büyük bir mutluluk olacaktır.
-                        Lütfen RSVP formunu kullanarak, detaylar netleştiğinde katılım durumunuzu bildiriniz.
-                    </p>
-
-                    <p class="rsvp-text" style="margin-top:16px;">
-                        We would be honored to celebrate with you. Please use the RSVP form and kindly
-                        respond when details are finalized.
-                    </p>
-
-                    <div class="btn-row">
-                        <a href="LINK HERE" class="btn btn-primary" target="_blank"
-                            rel="noopener noreferrer">Open RSVP Form</a>
-                        <a href="#top" class="btn btn-secondary">Back To Top</a>
-                    </div>
-
-                    <div class="footer-note">Formal invitation details and timing will be updated here.</div>
-                    <div class="monogram">S &amp; S</div>
                 </div>
             </div>
         </section>
@@ -1071,17 +1167,11 @@
         const envelopeContainer = document.getElementById('envelopeContainer');
         const envelope = document.getElementById('envelope');
         const seal = document.getElementById('seal');
+        const inviteCard = document.getElementById('inviteCard');
         const music = document.getElementById('bgMusic');
         const tapHint = document.getElementById('tapHint');
 
-        let tapCount = 0;
         let opening = false;
-
-        function updateTapHint() {
-            if (tapCount === 0) tapHint.textContent = 'Tap to break the seal';
-            if (tapCount === 1) tapHint.textContent = 'Again… the seal is starting to crack';
-            if (tapCount === 2) tapHint.textContent = 'One more tap to open';
-        }
 
         function createLeavesBurst() {
             for (let i = 0; i < 14; i++) {
@@ -1115,9 +1205,9 @@
 
         entry.addEventListener('click', async () => {
             if (opening) return;
+            opening = true;
 
-            tapCount++;
-            updateTapHint();
+            tapHint.textContent = 'Opening invitation…';
 
             seal.classList.remove('shake-seal');
             envelopeContainer.classList.remove('shake-envelope');
@@ -1126,43 +1216,42 @@
             seal.classList.add('shake-seal');
             envelopeContainer.classList.add('shake-envelope');
 
-            setTimeout(() => {
-                seal.classList.remove('shake-seal');
-                envelopeContainer.classList.remove('shake-envelope');
-            }, 380);
-
-            if (tapCount === 2) {
-                seal.src = 'images/seal-2.png';
+            try {
+                await music.play();
+            } catch (e) {
+                // ignored after user interaction
             }
 
-            if (tapCount >= 3) {
-                opening = true;
-                tapHint.textContent = 'Opening invitation…';
-                seal.src = 'images/seal-3.png';
+            setTimeout(() => {
                 seal.classList.add('seal-break');
                 createLeavesBurst();
+            }, 120);
 
-                try {
-                    await music.play();
-                } catch (e) {
-                    // ignore autoplay issues after user interaction
-                }
+            setTimeout(() => {
+                envelope.src = 'images/envelope-open.png';
+            }, 240);
 
-                setTimeout(() => {
-                    envelope.src = 'images/envelope-open.png';
-                    seal.style.display = 'none';
-                    envelopeContainer.classList.add('envelope-open-rise');
-                }, 220);
+            setTimeout(() => {
+                seal.style.display = 'none';
+                inviteCard.classList.add('card-emerge');
+            }, 420);
 
-                setTimeout(() => {
-                    entry.classList.add('entry-fade');
-                }, 500);
+            setTimeout(() => {
+                envelope.classList.add('envelope-drop');
+            }, 820);
 
-                setTimeout(() => {
-                    entry.style.display = 'none';
-                    body.classList.remove('no-scroll');
-                }, 1250);
-            }
+            setTimeout(() => {
+                tapHint.textContent = 'Please wait…';
+            }, 1800);
+
+            setTimeout(() => {
+                entry.classList.add('entry-fade');
+            }, 7000);
+
+            setTimeout(() => {
+                entry.style.display = 'none';
+                body.classList.remove('no-scroll');
+            }, 7900);
         });
 
         const targetDate = new Date('May 17, 2026 00:00:00').getTime();
