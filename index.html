@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-scroll">
 
 <head>
     <meta charset="UTF-8" />
@@ -42,12 +42,14 @@
         body {
             width: 100%;
             max-width: 100%;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
+            overflow-y: auto;
             scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
             font-family: 'Inter', sans-serif;
             color: var(--text);
             background:
@@ -55,6 +57,7 @@
                 linear-gradient(180deg, #eef4ee 0%, #f6f3ed 22%, #fbf7f2 55%, #f2eee8 100%);
         }
 
+        html.no-scroll,
         body.no-scroll {
             overflow: hidden;
             height: calc(var(--vh) * 100);
@@ -1202,6 +1205,7 @@
         window.addEventListener('resize', setViewportHeight);
         window.addEventListener('orientationchange', setViewportHeight);
 
+        const html = document.documentElement;
         const body = document.body;
         const entry = document.getElementById('entryScreen');
         const envelopeContainer = document.getElementById('envelopeContainer');
@@ -1287,6 +1291,7 @@
             setTimeout(() => {
                 entry.style.display = 'none';
                 body.classList.remove('no-scroll');
+                html.classList.remove('no-scroll');
             }, 7900);
         });
 
