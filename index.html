@@ -273,10 +273,13 @@
         }
 
         #inviteCard img {
-            width: 100%;
-            display: block;
-            border-radius: 24px;
-        }
+    width: 100%;
+    display: block;
+    border-radius: 24px;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
 
         #envelope {
             position: absolute;
@@ -430,25 +433,28 @@
         }
 
         /* First invite section */
-        .invite-showcase {
-            padding-top: 72px;
-            padding-bottom: 40px;
-        }
+.invite-showcase {
+    padding-top: 72px;
+    padding-bottom: 40px;
+}
 
-        .invite-showcase-card {
-            max-width: 430px;
-            margin: 0 auto;
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 26px 60px rgba(56, 67, 53, 0.14);
-            border: 1px solid rgba(95, 104, 88, 0.10);
-            background: rgba(255, 255, 255, 0.7);
-        }
+.invite-showcase-card {
+    max-width: 430px;
+    margin: 0 auto;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 26px 60px rgba(56, 67, 53, 0.14);
+    border: 1px solid rgba(95, 104, 88, 0.10);
+    background: rgba(255, 255, 255, 0.7);
+}
 
-        .invite-showcase-card img {
-            width: 100%;
-            display: block;
-        }
+.invite-showcase-card img {
+    width: 100%;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
 
         /* Hero */
         .hero {
