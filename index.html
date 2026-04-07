@@ -168,6 +168,7 @@
             justify-content: center;
             padding: 22px;
             overflow: hidden;
+            pointer-events: auto;
         }
 
         #entryScreen::before,
@@ -273,13 +274,13 @@
         }
 
         #inviteCard img {
-    width: 100%;
-    display: block;
-    border-radius: 24px;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
-}
+            width: 100%;
+            display: block;
+            border-radius: 24px;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
 
         #envelope {
             position: absolute;
@@ -433,28 +434,29 @@
         }
 
         /* First invite section */
-.invite-showcase {
-    padding-top: 72px;
-    padding-bottom: 40px;
-}
+        .invite-showcase {
+            padding-top: 72px;
+            padding-bottom: 40px;
+        }
 
-.invite-showcase-card {
-    max-width: 430px;
-    margin: 0 auto;
-    border-radius: 28px;
-    overflow: hidden;
-    box-shadow: 0 26px 60px rgba(56, 67, 53, 0.14);
-    border: 1px solid rgba(95, 104, 88, 0.10);
-    background: rgba(255, 255, 255, 0.7);
-}
+        .invite-showcase-card {
+            max-width: 430px;
+            margin: 0 auto;
+            border-radius: 28px;
+            box-shadow: 0 26px 60px rgba(56, 67, 53, 0.14);
+            border: 1px solid rgba(95, 104, 88, 0.10);
+            background: rgba(255, 255, 255, 0.7);
+            touch-action: pan-y;
+        }
 
-.invite-showcase-card img {
-    width: 100%;
-    display: block;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
-}
+        .invite-showcase-card img {
+            width: 100%;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            touch-action: pan-y;
+        }
 
         /* Hero */
         .hero {
@@ -1025,8 +1027,8 @@
         <!-- INVITE CARD SECTION -->
         <section class="invite-showcase">
             <div class="container">
-                <div class="invite-showcase-card" data-aos="fade-up" data-aos-duration="950">
-                    <img src="images/invite-card.jpeg" alt="Wedding invitation card full view" />
+                <div class="invite-showcase-card">
+                    <img src="images/invite-card.jpeg" alt="Wedding invitation card full view" draggable="false" />
                 </div>
             </div>
         </section>
@@ -1292,13 +1294,14 @@
 
             setTimeout(() => {
                 entry.classList.add('entry-fade');
-            }, 7000);
-
-            setTimeout(() => {
-                entry.style.display = 'none';
                 body.classList.remove('no-scroll');
                 html.classList.remove('no-scroll');
-            }, 7900);
+                entry.style.pointerEvents = 'none';
+
+                setTimeout(() => {
+                    entry.style.display = 'none';
+                }, 600);
+            }, 5000);
         });
 
         const targetDate = new Date('May 17, 2026 00:00:00').getTime();
