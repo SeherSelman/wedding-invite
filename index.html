@@ -31,15 +31,13 @@
             --radius-lg: 28px;
             --radius-md: 18px;
             --max: 1120px;
-            --vh: 1vh;
         }
 
         * {
             box-sizing: border-box;
         }
 
-        html,
-        body {
+        html {
             width: 100%;
             max-width: 100%;
             margin: 0;
@@ -47,9 +45,16 @@
             overflow-x: hidden;
             overflow-y: auto;
             scroll-behavior: smooth;
+            overscroll-behavior-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: visible;
             font-family: 'Inter', sans-serif;
             color: var(--text);
             background:
@@ -59,8 +64,12 @@
 
         html.no-scroll,
         body.no-scroll {
-            overflow: hidden;
-            height: calc(var(--vh) * 100);
+            overflow: hidden !important;
+            height: 100vh;
+        }
+
+        body.page-loading {
+            overflow: hidden !important;
         }
 
         img {
@@ -157,8 +166,8 @@
         #entryScreen {
             position: fixed;
             inset: 0;
-            height: calc(var(--vh) * 100);
-            min-height: calc(var(--vh) * 100);
+            height: 100vh;
+            min-height: 100vh;
             z-index: 9999;
             background:
                 radial-gradient(circle at top, rgba(255, 255, 255, 0.75), transparent 32%),
@@ -271,6 +280,7 @@
             border-radius: 24px;
             box-shadow: 0 22px 50px rgba(56, 67, 53, 0.16);
             overflow: hidden;
+            pointer-events: none;
         }
 
         #inviteCard img {
@@ -437,6 +447,7 @@
         .invite-showcase {
             padding-top: 72px;
             padding-bottom: 40px;
+            overflow: hidden;
         }
 
         .invite-showcase-card {
@@ -446,21 +457,30 @@
             box-shadow: 0 26px 60px rgba(56, 67, 53, 0.14);
             border: 1px solid rgba(95, 104, 88, 0.10);
             background: rgba(255, 255, 255, 0.7);
-            touch-action: pan-y;
+            pointer-events: none;
+            touch-action: auto;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+            aspect-ratio: 5 / 7;
+            overflow: hidden;
         }
 
         .invite-showcase-card img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
             pointer-events: none;
             user-select: none;
+            -webkit-user-select: none;
             -webkit-user-drag: none;
-            touch-action: pan-y;
+            touch-action: auto;
         }
 
         /* Hero */
         .hero {
-            min-height: calc(var(--vh) * 100);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -628,21 +648,24 @@
 
         .photo-main {
             width: 68%;
-            height: 400px;
+            aspect-ratio: 4 / 5;
+            height: auto;
             top: 0;
             left: 0;
         }
 
         .photo-small-a {
             width: 44%;
-            height: 250px;
+            aspect-ratio: 4 / 5;
+            height: auto;
             bottom: 0;
             left: 7%;
         }
 
         .photo-small-b {
             width: 38%;
-            height: 260px;
+            aspect-ratio: 4 / 5;
+            height: auto;
             top: 110px;
             right: 0;
         }
@@ -699,7 +722,6 @@
             background: rgba(255, 255, 255, 0.72);
             border: 1px solid rgba(95, 104, 88, 0.08);
             box-shadow: var(--shadow);
-            min-height: 240px;
         }
 
         .gallery-item img {
@@ -710,17 +732,20 @@
 
         .gallery-item.large {
             grid-column: span 7;
-            min-height: 430px;
+            aspect-ratio: 7 / 5;
+            min-height: 0;
         }
 
         .gallery-item.tall {
             grid-column: span 5;
-            min-height: 430px;
+            aspect-ratio: 4 / 5;
+            min-height: 0;
         }
 
         .gallery-item.wide {
             grid-column: span 4;
-            min-height: 260px;
+            aspect-ratio: 4 / 3;
+            min-height: 0;
         }
 
         .rsvp-section {
@@ -847,7 +872,6 @@
             .gallery-item.tall,
             .gallery-item.wide {
                 grid-column: span 12;
-                min-height: 320px;
             }
         }
 
@@ -857,8 +881,7 @@
             }
 
             .hero {
-                padding-top: 90px;
-                min-height: calc(var(--vh) * 100);
+                min-height: 100vh;
             }
 
             .hero-content {
@@ -882,18 +905,15 @@
 
             .photo-main {
                 width: 74%;
-                height: 300px;
             }
 
             .photo-small-a {
                 width: 48%;
-                height: 190px;
                 left: 0;
             }
 
             .photo-small-b {
                 width: 44%;
-                height: 190px;
                 top: 150px;
             }
 
@@ -958,12 +978,6 @@
                 min-height: 400px;
             }
 
-            .gallery-item.large,
-            .gallery-item.tall,
-            .gallery-item.wide {
-                min-height: 250px;
-            }
-
             #inviteCard {
                 bottom: 52px;
                 width: 78%;
@@ -987,7 +1001,7 @@
     </style>
 </head>
 
-<body id="top" class="no-scroll">
+<body id="top" class="no-scroll page-loading">
     <div class="page-shell">
         <!-- ENTRY SCREEN -->
         <div id="entryScreen">
@@ -1015,7 +1029,7 @@
                     <img id="seal" src="images/seal-1.png" alt="Wax seal" />
                 </div>
 
-                <div id="tapHint"></div>
+                <div id="tapHint">Loading site…</div>
             </div>
         </div>
 
@@ -1198,21 +1212,6 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            once: true,
-            duration: 900,
-            offset: 80
-        });
-
-        function setViewportHeight() {
-            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
-        }
-
-        setViewportHeight();
-        window.addEventListener('load', setViewportHeight);
-        window.addEventListener('resize', setViewportHeight);
-        window.addEventListener('orientationchange', setViewportHeight);
-
         const html = document.documentElement;
         const body = document.body;
         const entry = document.getElementById('entryScreen');
@@ -1224,6 +1223,13 @@
         const tapHint = document.getElementById('tapHint');
 
         let opening = false;
+        let pageReady = false;
+
+        AOS.init({
+            once: true,
+            duration: 900,
+            offset: 80
+        });
 
         function createLeavesBurst() {
             for (let i = 0; i < 14; i++) {
@@ -1255,8 +1261,19 @@
             }
         }
 
+        function markPageReady() {
+            pageReady = true;
+            body.classList.remove('page-loading');
+            tapHint.textContent = 'Tap to open.';
+            AOS.refreshHard();
+        }
+
+        window.addEventListener('load', () => {
+            markPageReady();
+        });
+
         entry.addEventListener('click', async () => {
-            if (opening) return;
+            if (!pageReady || opening) return;
             opening = true;
 
             tapHint.textContent = 'Opening invitation…';
@@ -1300,6 +1317,7 @@
 
                 setTimeout(() => {
                     entry.style.display = 'none';
+                    AOS.refreshHard();
                 }, 600);
             }, 5000);
         });
