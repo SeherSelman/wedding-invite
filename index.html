@@ -644,12 +644,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .photo-main {
             width: 68%;
             aspect-ratio: 4 / 5;
-            height: auto;
             top: 0;
             left: 0;
         }
@@ -657,7 +657,6 @@
         .photo-small-a {
             width: 44%;
             aspect-ratio: 4 / 5;
-            height: auto;
             bottom: 0;
             left: 7%;
         }
@@ -665,7 +664,6 @@
         .photo-small-b {
             width: 38%;
             aspect-ratio: 4 / 5;
-            height: auto;
             top: 110px;
             right: 0;
         }
@@ -856,84 +854,161 @@
         }
 
         @media (max-width: 980px) {
-            .two-col {
-                grid-template-columns: 1fr;
-            }
+    .two-col {
+        grid-template-columns: 1fr;
+    }
 
-            .photo-stack {
-                min-height: 500px;
-            }
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
 
-            .details-grid {
-                grid-template-columns: 1fr;
-            }
+    .gallery-item.large,
+    .gallery-item.tall,
+    .gallery-item.wide {
+        grid-column: span 12;
+    }
+}
 
-            .gallery-item.large,
-            .gallery-item.tall,
-            .gallery-item.wide {
-                grid-column: span 12;
-            }
-        }
+@media (max-width: 720px) {
+    section {
+        padding: 70px 0;
+    }
 
-        @media (max-width: 720px) {
-            section {
-                padding: 70px 0;
-            }
+    .hero {
+        min-height: 100vh;
+    }
 
-            .hero {
-                min-height: 100vh;
-            }
+    .hero-content {
+        padding: 28px 18px;
+        border-radius: 28px;
+    }
 
-            .hero-content {
-                padding: 28px 18px;
-                border-radius: 28px;
-            }
+    .countdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-            .countdown-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
+    .story-copy,
+    .details-copy,
+    .rsvp-card {
+        padding: 28px 20px;
+    }
 
-            .story-copy,
-            .details-copy,
-            .rsvp-card {
-                padding: 28px 20px;
-            }
+    /* STORY PHOTOS FIX */
+    .photo-stack {
+        position: static;
+        min-height: unset;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 22px;
+    }
 
-            .photo-stack {
-                min-height: 450px;
-            }
+    .photo-card {
+        position: relative;
+        width: 100%;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        border-radius: 20px;
+    }
 
-            .photo-main {
-                width: 74%;
-            }
+    .photo-main,
+    .photo-small-a,
+    .photo-small-b {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+    }
 
-            .photo-small-a {
-                width: 48%;
-                left: 0;
-            }
+    .photo-main {
+        grid-column: 1 / -1;
+    }
 
-            .photo-small-b {
-                width: 44%;
-                top: 150px;
-            }
+    #envelopeContainer {
+        height: 360px;
+    }
 
-            #envelopeContainer {
-                height: 360px;
-            }
+    #seal {
+        top: 70%;
+    }
 
-            #seal {
-                top: 70%;
-            }
+    #inviteCard {
+        bottom: 62px;
+        width: 74%;
+    }
 
-            #inviteCard {
-                bottom: 62px;
-                width: 74%;
-            }
+    .invite-showcase-card {
+        max-width: 360px;
+    }
+}
 
-            .invite-showcase-card {
-                max-width: 360px;
-            }
-        }
+@media (max-width: 520px) {
+    .container {
+        width: min(calc(100% - 22px), var(--max));
+    }
+
+    .entry-title {
+        font-size: 2.35rem;
+    }
+
+    .entry-family {
+        font-size: 1rem;
+        line-height: 1.08;
+        margin-bottom: 8px;
+    }
+
+    #envelopeContainer {
+        width: 86vw;
+        max-width: 420px;
+        height: 315px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero-date {
+        font-size: 0.96rem;
+        letter-spacing: 0.09em;
+    }
+
+    .countdown-item {
+        padding: 14px 8px;
+    }
+
+    .section-title,
+    .rsvp-title {
+        font-size: 2.6rem;
+    }
+
+    .photo-stack {
+        gap: 10px;
+    }
+
+    .photo-card {
+        border-radius: 16px;
+    }
+
+    #inviteCard {
+        bottom: 52px;
+        width: 78%;
+        border-radius: 16px;
+    }
+
+    #inviteCard img {
+        border-radius: 16px;
+    }
+
+    .invite-showcase {
+        padding-top: 46px;
+        padding-bottom: 24px;
+    }
+
+    .invite-showcase-card {
+        max-width: 300px;
+        border-radius: 18px;
+    }
+}
 
         @media (max-width: 520px) {
             .container {
@@ -1047,6 +1122,42 @@
             </div>
         </section>
 
+        <!-- DETAILS -->
+        <section>
+            <div class="container">
+                <div class="details-copy card" data-aos="fade-up" data-aos-duration="900">
+                    <div class="eyebrow">The Celebration</div>
+                    <h2 class="section-title">Save The Date</h2>
+                    <p class="section-text" style="margin: 0 auto; text-align: center; max-width: 64ch;">
+
+                    </p>
+
+                    <div class="details-grid">
+                        <div class="detail-box" data-aos="zoom-in" data-aos-delay="50">
+                            <div class="detail-label">Date</div>
+                            <div class="detail-value">Sunday May 17</div>
+                            <div class="detail-sub">2026</div>
+                        </div>
+                        <div class="detail-box" data-aos="zoom-in" data-aos-delay="120">
+                            <div class="detail-label">Time</div>
+                            <div class="detail-value">6:00 PM EST</div>
+                            <div class="detail-sub"></div>
+                        </div>
+                        <div class="detail-box" data-aos="zoom-in" data-aos-delay="190">
+                            <div class="detail-label">Venue</div>
+                            <div class="detail-value">
+                                <a href="https://share.google/fTNxY7lp4hjCMSiJI" target="_blank"
+                                    style="text-decoration:none; color:inherit;">
+                                    Edessa Banquet Hall
+                                </a>
+                            </div>
+                            <div class="detail-sub">Tap for directions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- RSVP -->
         <section class="rsvp-section">
             <div class="container">
@@ -1064,9 +1175,10 @@
                     </p>
 
                     <div class="btn-row">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfFmaF29OI-gFPsQAxe4eGk1tfAKgVGS9blMrArSXzfJIr5Xw/viewform?usp=publish-editor" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open RSVP
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfFmaF29OI-gFPsQAxe4eGk1tfAKgVGS9blMrArSXzfJIr5Xw/viewform?usp=publish-editor"
+                            class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open RSVP
                             Form</a>
-                        <a href="#top" class="btn btn-secondary">Back To Top</a>
+                        
                     </div>
 
                     <div class="footer-note">Formal invitation details and timing will be updated here.</div>
@@ -1145,43 +1257,9 @@
             </div>
         </section>
 
-        <!-- DETAILS -->
-        <section>
-            <div class="container">
-                <div class="details-copy card" data-aos="fade-up" data-aos-duration="900">
-                    <div class="eyebrow">The Celebration</div>
-                    <h2 class="section-title">Save The Date</h2>
-                    <p class="section-text" style="margin: 0 auto; text-align: center; max-width: 64ch;">
-                        
-                    </p>
 
-                    <div class="details-grid">
-                        <div class="detail-box" data-aos="zoom-in" data-aos-delay="50">
-                            <div class="detail-label">Date</div>
-                            <div class="detail-value">Sunday May 17</div>
-                            <div class="detail-sub">2026</div>
-                        </div>
-                        <div class="detail-box" data-aos="zoom-in" data-aos-delay="120">
-                            <div class="detail-label">Time</div>
-                            <div class="detail-value">5:00 PM EST</div>
-                            <div class="detail-sub"></div>
-                        </div>
-                        <div class="detail-box" data-aos="zoom-in" data-aos-delay="190">
-                            <div class="detail-label">Venue</div>
-                            <div class="detail-value">
-                                <a href="https://share.google/fTNxY7lp4hjCMSiJI" target="_blank"
-                                    style="text-decoration:none; color:inherit;">
-                                    Edessa Banquet Hall
-                                </a>
-                            </div>
-                            <div class="detail-sub">Tap for directions</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- GALLERY -->
+        <!-- GALLERY
         <section>
             <div class="container">
                 <div data-aos="fade-up" data-aos-duration="900">
@@ -1208,7 +1286,7 @@
                 </div>
             </div>
         </section>
-    </div>
+    </div>-->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
